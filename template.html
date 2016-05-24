@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$TITLE</title>
+<!-- write your code here -->
+
+<meta name="ad.size" content="width=$WT,height=$HT"> 
+<script type="text/javascript">
+var clickTag = "http://www.google.com"; </script>
+
+$CREATEJS_SCRIPTS
+$SCRIPT_START
+
+var canvas, stage, exportRoot;
+function init() {
+	// --- write your JS code here ---
+	$CJS_INIT
+	
+	// --- retina display hack here ---
+	
+	if (window.devicePixelRatio) {
+    // grab the width and height from canvas
+    var height = canvas.getAttribute('height');
+    var width = canvas.getAttribute('width');
+    // reset the canvas width and height with window.devicePixelRatio applied
+    canvas.setAttribute('width', Math.round(width * window.devicePixelRatio));
+    canvas.setAttribute('height', Math.round( height * window.devicePixelRatio));
+    // force the canvas back to the original size using css
+    canvas.style.width = width+"px";
+    canvas.style.height = height+"px";
+    // set CreateJS to render scaled
+    stage.scaleX = stage.scaleY = window.devicePixelRatio;
+    }
+}
+$SCRIPT_END
+<!-- write your code here -->
+
+</head>
+<body onload="init();" style="background-color:#D4D4D4;margin:0px;">
+<a href="javascript:window.open(window.clickTag)"><canvas id="canvas" width="$WT" height="$HT"></canvas></a>
+</body>
+</html>
